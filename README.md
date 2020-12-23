@@ -1,4 +1,4 @@
-# Microprocessor_Fundamentals_and_Programming_Lab_Tasks
+# MFP Lab Tasks
 Microprocessor Fundamental and Programming subject lab tasks sem 5. 
 
 ## Lab 1
