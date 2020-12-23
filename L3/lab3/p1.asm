@@ -1,0 +1,33 @@
+DATA SEGMENT
+      A DB 5,2,5,6,4,3
+      SMALLEST DB ?
+DATA ENDS
+
+CODE SEGMENT
+      ASSUME DS:DATA,CS:CODE
+START:
+      MOV AX,DATA
+      MOV DS,AX
+      MOV CX,0000
+      MOV CL,06
+      LEA BX,A
+      MOV AX,0000
+      MOV AL,0FFH
+      MOV AH,BYTE PTR[BX]
+CHECK:
+      CMP AL,BYTE PTR[BX]
+      JNC SAVE
+      JMP NEXT
+SAVE: 
+      MOV AL,BYTE PTR[BX]
+      JMP NEXT
+NEXT: 
+      INC BX
+      DEC CL
+      CMP CL,00
+      JNZ CHECK
+      MOV SMALLEST,AL
+      INT 03
+
+CODE ENDS
+END START

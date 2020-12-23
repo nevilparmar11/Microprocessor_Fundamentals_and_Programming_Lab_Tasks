@@ -1,0 +1,25 @@
+DATA SEGMENT
+        ARRAY2 DB 4 DUP(0)
+        ARRAY1 DB 01h,01h,02h,04,03h,02h,01h,00h,04h,02h,03h,00h,01h,02h,03h,04h,01h,03h,00h,02h
+DATA ENDS
+
+CODE SEGMENT
+        ASSUME DS:DATA,CS:CODE
+START:
+        MOV AX,DATA
+        MOV DS,AX
+        LEA SI,ARRAY1
+        LEA DI,ARRAY2
+        MOV CX,14H
+        MOV BX,0000H
+COMPUTE:
+        MOV BL,[SI]
+        INC [DI+BX-1]
+        INC SI
+        DEC CX
+        JCXZ STOP
+        JMP COMPUTE
+   STOP:
+        INT 03H
+CODE ENDS
+END START
